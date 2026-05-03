@@ -1,0 +1,33 @@
+{
+  "telegram_id": 123456789,
+  "metrics": [
+    {
+      "metric": "weight",
+      "value": 75.5,
+      "unit": "kg",
+      "recorded_at": "2024-01-15T08:00:00",
+      "source": "Apple Watch"
+    },
+    {
+      "metric": "steps",
+      "value": 8432,
+      "unit": "count",
+      "recorded_at": "2024-01-15T23:59:00",
+      "source": "iPhone"
+    },
+    {
+      "metric": "heart_rate",
+      "value": 72,
+      "unit": "bpm",
+      "recorded_at": "2024-01-15T10:00:00",
+      "source": "Apple Watch"
+    },
+    {
+      "metric": "sleep_hours",
+      "value": 7.5,
+      "unit": "hours",
+      "recorded_at": "2024-01-15T07:00:00",
+      "source": "Apple Watch"
+    }
+  ]
+}
