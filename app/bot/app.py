@@ -30,12 +30,14 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("kitchen", kitchen.kitchen_menu))
     app.add_handler(CommandHandler("house", household.household_menu))
     app.add_handler(CommandHandler("health", health.health_menu))
+    app.add_handler(CommandHandler("health_setup", health.health_setup_command))
 
     # Conversations (must be before generic callback handlers)
     app.add_handler(baby.get_baby_conversation())
     app.add_handler(kitchen.get_kitchen_conversation())
     app.add_handler(household.get_household_conversation())
     app.add_handler(calendar.get_calendar_conversation())
+    app.add_handler(health.get_health_conversation())
 
     # Baby callbacks
     app.add_handler(CallbackQueryHandler(baby.baby_menu, pattern="^baby:menu$"))
@@ -67,10 +69,14 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CallbackQueryHandler(household.household_stats, pattern="^house:stats$"))
 
     # Health callbacks
-    app.add_handler(CallbackQueryHandler(health.show_weight, pattern="^health:weight:"))
+    app.add_handler(CallbackQueryHandler(health.health_menu, pattern="^health:menu$"))
+    app.add_handler(CallbackQueryHandler(health.show_weight, pattern="^health:weight:(owner|wife)$"))
     app.add_handler(CallbackQueryHandler(health.show_steps, pattern="^health:steps$"))
     app.add_handler(CallbackQueryHandler(health.show_heart_rate, pattern="^health:heart_rate$"))
     app.add_handler(CallbackQueryHandler(health.show_sleep, pattern="^health:sleep$"))
+    app.add_handler(CallbackQueryHandler(health.add_weight_who, pattern="^health:add_weight$"))
+    app.add_handler(CallbackQueryHandler(health.health_settings, pattern="^health:settings$"))
+    app.add_handler(CallbackQueryHandler(health.shortcuts_guide, pattern="^health:shortcuts_guide$"))
 
     # Main menu text buttons
     app.add_handler(MessageHandler(

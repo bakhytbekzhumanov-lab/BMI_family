@@ -115,9 +115,35 @@ def health_menu_keyboard() -> InlineKeyboardMarkup:
             InlineKeyboardButton("👣 Шаги сегодня", callback_data="health:steps"),
             InlineKeyboardButton("❤️ Пульс", callback_data="health:heart_rate"),
         ],
-        [InlineKeyboardButton("😴 Сон", callback_data="health:sleep")],
+        [
+            InlineKeyboardButton("😴 Сон", callback_data="health:sleep"),
+            InlineKeyboardButton("➕ Ввести вес", callback_data="health:add_weight"),
+        ],
+        [InlineKeyboardButton("⚙️ Настройки", callback_data="health:settings")],
     ]
     return InlineKeyboardMarkup(buttons)
+
+
+def health_settings_keyboard() -> InlineKeyboardMarkup:
+    buttons = [
+        [
+            InlineKeyboardButton("📏 Мой рост", callback_data="health:set_height:owner"),
+            InlineKeyboardButton("📏 Рост жены", callback_data="health:set_height:wife"),
+        ],
+        [InlineKeyboardButton("📱 Настройка Shortcuts", callback_data="health:shortcuts_guide")],
+        [InlineKeyboardButton("◀️ Назад", callback_data="health:menu")],
+    ]
+    return InlineKeyboardMarkup(buttons)
+
+
+def weight_who_keyboard() -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("👤 Мой", callback_data="health:add_weight:owner"),
+            InlineKeyboardButton("👩 Жены", callback_data="health:add_weight:wife"),
+        ],
+        [InlineKeyboardButton("◀️ Назад", callback_data="health:menu")],
+    ])
 
 
 def confirm_keyboard(yes_data: str, no_data: str = "cancel") -> InlineKeyboardMarkup:

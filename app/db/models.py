@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime, date
 from sqlalchemy import (
-    BigInteger, Boolean, DateTime, Enum, Float, ForeignKey,
+    BigInteger, Boolean, Date, DateTime, Enum, Float, ForeignKey,
     Integer, String, Text, func
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -139,6 +139,20 @@ class BabyMeasurement(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
     baby: Mapped["Baby"] = relationship(back_populates="measurements")
+
+
+# ─── User Profiles (for BMI calculation) ─────────────────────────────────────
+
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    telegram_id: Mapped[int] = mapped_column(BigInteger, unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(100))
+    height_cm: Mapped[float | None] = mapped_column(Float)
+    birth_date: Mapped[date | None] = mapped_column(Date)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
 
 
 # ─── Apple Health ─────────────────────────────────────────────────────────────
